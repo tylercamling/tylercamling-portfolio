@@ -525,7 +525,17 @@ body.socials-page {
 
 /* --- Media Queries --------------------------------------------------------*/
 @media (max-width: 1000px) {
-    
+
+    body.socials-page {
+        overflow-y: auto;
+        height: auto;
+    }
+
+    .socials {
+        height: auto;
+        min-height: 100vh;
+    }
+
     .nav-bar {
         display: flex;
         align-items: center;
