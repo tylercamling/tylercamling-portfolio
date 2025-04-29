@@ -551,7 +551,7 @@ body.socials-page {
         top: 0;
         left: -300px; 
         width: 275px;
-        height: 38vh; 
+        height: 100vh; 
         background: rgba(255, 255, 255, 0.9); 
         backdrop-filter: blur(8px);
         border-radius: 0 0 12px 0;
