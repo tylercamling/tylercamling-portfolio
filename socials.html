@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Socials - Tyler Camling</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body class="socials-page">
+    <nav class="nav-bar">
+        <button class="hamburger" aria-label="Toggle navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        
+        <div class="nav-bar-links">
+            <a href="index.html#home">Home</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#resume">Resume</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="socials.html">Socials</a>
+        </div>
+    </nav>
+
+    <section class="socials" >
+        <div class="section-content">
+            <div class="socials-content-container">
+            
+                <div class="socials-header-img-container">
+                    <img class="socials-header-img" src="Images/about-left.jpg" alt="html logo">
+                </div>
+
+                <div class="socials-header">
+                    <h1 class="inter-tight-header">Tyler Camling</h1>
+                    <span class="socials-subheader">Follow my socials below:</span>
+                </div>
+
+                <div class="socials-buttons-container">
+                    <div class="main-youtube-button-container">
+                        <a href="https://www.youtube.com/@tyler.camling" target="_blank" class="youtube-button">
+                            <img src="Images/youtube-logo.png" class="youtube-logo">
+                            <span class="youtube-text-main">Tyler Camling</span>
+                        </a>
+                    </div>
+
+                    <div class="alt-youtube-button-container">
+                        <a href="https://www.youtube.com/@iitsTyler" target="_blank" class="youtube-button">
+                            <img src="Images/youtube-logo.png" class="youtube-logo">
+                            <span class="youtube-text-main">iitsTyler</span>
+                        </a>
+                    </div>
+                    
+                    <div class="twitch-button-container">
+                        <a href="https://www.twitch.tv/iitstyler_" target="_blank" class="twitch-button">
+                            <img src="Images/twitch-logo.png" class="youtube-logo">
+                            <span class="twitch-text">iitsTyler_</span>
+                        </a>
+                    </div>
+
+                    <div class="tiktok-button-container">
+                        <a href="https://www.tiktok.com/@iitstyler_" target="_blank" class="tiktok-button">
+                            <img src="Images/tiktok-logo.png" class="tiktok-logo">
+                            <span class="tiktok-text">iitsTyler</span>
+                        </a>
+                    </div>
+
+                    <div class="instagram-button-container">
+                        <a href="https://www.instagram.com/tyler.camling/" target="_blank" class="instagram-button">
+                            <img src="Images/instagram-logo.png" class="instagram-logo">
+                            <span class="instagram-text">tyler.camling</span>
+                        </a>
+                    </div>
+                    
+                    <div class="x-button-container">
+                        <a href="https://x.com/tylercamling" target="_blank" class="x-button">
+                            <img src="Images/x-logo.png" class="x-logo">
+                            <span class="x-text">tylercamling</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        
+        </div>
+    </section>
+
+    <!----------- SCRIPTS ----------->
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-bar-links');
+        const links = document.querySelectorAll('.nav-bar-links a');
+        
+        hamburger.addEventListener('click', () => {
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                navLinks.classList.add('closing');
+
+                setTimeout(() => {
+                    navLinks.classList.remove('closing');
+                    }, 400); // match CSS transition time
+                } else {
+                    navLinks.classList.add('active');
+                }
+
+                hamburger.classList.toggle('active');
+        });
+    </script>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        
+        function updateHamburgerColor() {
+            const hamburger = document.querySelector('.hamburger');
+            const bars = document.querySelectorAll('.hamburger .bar');
+            const isSocialsPage = document.body.classList.contains('socials-page');
+            const hamburgerRect = hamburger.getBoundingClientRect();
+            const hamburgerMiddleY = hamburgerRect.top + hamburgerRect.height / 2;
+            const absoluteHamburgerY = window.scrollY + hamburgerMiddleY;
+
+            // If hamburger is open, use black bars
+            if (hamburger.classList.contains('active')) {
+                bars.forEach(bar => {
+                    bar.style.backgroundColor = 'black';
+                });
+                return;
+            }
+
+            // On socials page, set default to white
+            if (isSocialsPage) {
+                bars.forEach(bar => {
+                    bar.style.backgroundColor = 'white';
+                });
+                return;
+            }
+
+            // For other pages, use section-based attribute
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionBottom = sectionTop + section.offsetHeight;
+
+                if (absoluteHamburgerY >= sectionTop && absoluteHamburgerY <= sectionBottom) {
+                    const color = section.getAttribute('data-hamburger-color') || 'black';
+                    bars.forEach(bar => {
+                        bar.style.backgroundColor = color;
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>
